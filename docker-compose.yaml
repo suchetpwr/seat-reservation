@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: seat-reservation-postgres
+    environment:
+      POSTGRES_DB: seat_reservation
+      POSTGRES_USER: seat_app
+      POSTGRES_PASSWORD: seat_password
+    ports:
+        - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
