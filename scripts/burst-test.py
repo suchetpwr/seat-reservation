@@ -41,7 +41,10 @@ def make_request(
             }
 
     except urllib.error.HTTPError as error:
-        body = error.read().decode("utf-8")
+        try:
+            body = error.read().decode("utf-8")
+        except Exception as read_error:
+            body = f"HTTP {error.code}; unable to read response body: {read_error}"
 
         return {
             "status": error.code,
